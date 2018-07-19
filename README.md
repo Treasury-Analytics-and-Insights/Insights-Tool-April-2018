@@ -1,10 +1,13 @@
 # Insights-Tool-April-2018
 Updated Insights tool with new Population Explorer and Population Directions. Also included is SAS code to be applied in the IDI to construct the data for Insights.
 
-Disclaimer
-The views, opinions, findings, and conclusions or recommendations expressed in this report are strictly those of the authors. They do not necessarily reflect the views of the New Zealand Treasury, Statistics New Zealand or the New Zealand Government. The New Zealand Treasury and the New Zealand Government take no responsibility for any errors or omissions in, or for the correctness of, the information contained in this Analytical Paper.
+# Disclaimer
 
-The results in this report are not official statistics, they have been created for research purposes from the Integrated Data Infrastructure (IDI) managed by Statistics New Zealand.
+This code can be modified and customised by users to meet the needs of specific projects and in all cases, Analytics and Insights Team, NZ Treasury must be acknowledged as a source. While all care and diligence has been used in developing this code, The Treasury gives no warranty it is error free and will not be liable for any loss or damage suffered as a result of its use, either directly or indirectly.
+
+The views, opinions, findings, and conclusions or recommendations expressed in this study are strictly those of the authors. They do not necessarily reflect the views of the New Zealand Treasury, Statistics New Zealand or the New Zealand Government. The New Zealand Treasury and the New Zealand Government take no responsibility for any errors or omissions in, or for the correctness of, the information contained in this study.
+
+The results in this analysis are not official statistics, they have been created for research purposes from the Integrated Data Infrastructure (IDI) managed by Statistics New Zealand.
 
 Access to the anonymised data used in this study was provided by Statistics NZ in accordance with security and confidentiality provisions of the Statistics Act 1975. Only people authorised by the Statistics Act 1975 are allowed to see data about a particular person, household, business or organisation and the results in this paper have been confidentialised to protect these groups from identification.
 
