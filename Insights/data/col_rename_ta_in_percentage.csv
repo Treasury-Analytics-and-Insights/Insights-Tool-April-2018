@@ -1,0 +1,10 @@
+NAME,RENAME
+TA,Current TA
+ID,Previous TA
+FLOW_DIR,Direction of population change
+FLOW_TYPE,Type of population change
+PREV_YEAR,Previous year
+CURR_YEAR,Current year
+TOTAL_PREV,Previous population in current TA
+TOTAL_CURR,Current population in current TA
+VALUE,Population change due to selected flow (% of the population of the current TA)

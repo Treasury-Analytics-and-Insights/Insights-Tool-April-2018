@@ -1,0 +1,10 @@
+NAME,RENAME
+TA,TA
+FLOW_DIR,Direction of population change
+FLOW_TYPE,Type of population change
+FLOW_DEMOGRAPHIC,Characteristic of interest
+FDV_LABEL,Subgroup of interest
+CURR_YEAR,Current year
+TOTAL_CURR,Current TA population
+TOTAL_PREV,Previous TA population
+VALUE,Population change due to selected flow (% of previous population)

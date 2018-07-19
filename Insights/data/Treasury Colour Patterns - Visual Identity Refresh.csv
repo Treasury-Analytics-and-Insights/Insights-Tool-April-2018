@@ -1,0 +1,29 @@
+colour,palette,degree,code,R,G,B
+Blue 3,Core,NA,#0083AC,0,131,172
+Black,Core,NA,#000000,0,0,0
+Treasury blue,Core,NA,#00205B,0,32,91
+Supporting 3,Core,NA,#67A854,103,168,84
+Green 3,Core,NA,#BCD651,188,214,81
+Supporting 4,Core,NA,#F1A42D,241,164,45
+Blue 3,Publication,NA,#0083AC,0,131,172
+Blue 4,Publication,NA,#00BCE2,0,188,226
+Green 3,Publication,NA,#BCD651,188,214,81
+Supporting 4,Publication,NA,#F1A42D,241,164,45
+Lt Grey,Publication,NA,#A49E9D,164,158,157
+Supporting 4,Secondary,1,#F1A42D,241,164,45
+Supporting 4,Secondary,2,#8B8884,139,136,132
+Supporting 4,Secondary,3,#EF966C,239,150,108
+Supporting 4,Secondary,4,#3F403A,63,64,58
+Blue 5,Secondary,1,#67BAF0,103,186,240
+Blue 5,Secondary,2,#67A854,103,168,84
+Blue 5,Secondary,3,#20A3A5,32,163,165
+Blue 5,Secondary,4,#00BCE2,0,188,226
+Blue 5,Secondary,5,#3F403A,63,64,58
+Green 3,Secondary,1,#BCD651,188,214,81
+Green 3,Secondary,2,#8B8884,139,136,132
+Green 3,Secondary,3,#67A854,103,168,84
+Green 3,Secondary,4,#3F403A,63,64,58
+Blue 6,Secondary,1,#67BAF0,103,186,240
+Blue 6,Secondary,2,#8B8884,139,136,132
+Blue 6,Secondary,3,#0083AC,0,131,172
+Blue 6,Secondary,4,#3F403A,63,64,58
