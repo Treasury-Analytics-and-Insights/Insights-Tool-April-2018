@@ -1,0 +1,110 @@
+** Macro to assign a location to a dataset that has age, lagdays and source fields;
+%macro assign_location(indat,outdat);
+*select all snz_uids;
+proc sql;
+	create table snz_uids as select unique snz_uid
+	from &indat.;
+quit;
+
+data _null_;
+	set snz_uids;
+	call symput('sampsize',_n_);
+run;
+
+proc sort data=&indat.;
+	by snz_uid source source_date;
+run;
+
+%macro bootstrap(reps);
+** Now assign a probability of match to all addresses;
+data bootstrap;
+	set &indat.;
+	%do i=1 %to &reps.;
+		%include "&path.\Decision Rules\code&i..sas";
+		p_match&i.=p_match;
+		%if &i.=&reps. %then %do;
+			ave_p_match=mean(of p_match1-p_match&reps.);
+			if lagdays>=0 then pos_lag=lagdays;
+			else pos_lag=9999;
+			if lagdays<0 then neg_lag=abs(lagdays);
+			else neg_lag=9999;
+			drop p_match:;
+		%end;
+	%end;
+run;
+%mend bootstrap;
+
+%bootstrap(100);
+
+proc sort data=bootstrap;
+	by snz_uid descending ave_p_match pos_lag neg_lag;
+run;
+
+** Want to maximise the probability a switch would be correct and the original address incorrect;
+data allocate;
+	retain snz_uid n first_source first_ta first_p first_lag switch_ta switch_p switch first_count switch_count first_count1 switch_count1 first_count5 switch_count5 switch_source switch_lag;
+	length first_ta switch_ta $ 3 source first_source switch_source $ 6;
+	set bootstrap;
+	by snz_uid;
+	if first.snz_uid then do;
+		n=0;
+		first_ta=source_ta;
+		first_p=ave_p_match;
+		first_source=source;
+		first_lag=lag;
+		switch_p=.;
+		first_count=0;
+		first_count1=0;
+		first_count5=0;
+		switch_count=0;
+		switch_count1=0;
+		switch_count5=0;
+		switch_ta='';
+		switch=0;
+		switch_source='          ';
+		switch_lag=.;
+	end;
+	if switch=0 and first_ta ne source_ta then do;
+		switch_ta=source_ta;
+		switch=1;
+		switch_p=ave_p_match;
+		switch_source=source;
+		switch_lag=lag;
+	end;
+	if first_ta=source_ta then do;
+		first_count+1;
+		if abs(first_p-ave_p_match)<=0.01 then first_count1+1;
+		if abs(first_p-ave_p_match)<=0.05 then first_count5+1;
+	end;
+	if switch_ta=source_ta then do;
+		switch_count+1;
+		if abs(first_p-ave_p_match)<=0.01 then switch_count1+1;
+		if abs(first_p-ave_p_match)<=0.05 then switch_count5+1;
+	end;
+	p_diff=first_p-switch_p;
+	if last.snz_uid then output;
+run;
+
+data &outdat.(drop=source_ta first_source random first_ta switch_ta pos_lag neg_lag first_c: switch_c: first_p switch_p p_diff n training training2 _node_ _leaf_
+				provider provider_keep first_lag lagdays lagmths p_switch_match v_switch_match ave_p_match source_date switch_lag switch_source _warn_);
+	length source $ 6;
+	set allocate;
+	%include "&path.\Decision Rules\code_allocate.sas";
+	if p_switch_match>0.5 then do;
+		pred_ta=switch_ta;
+		source=switch_source;
+		lag=switch_lag;
+		switch=1;
+	end;
+	else do;
+		source=first_source;
+		pred_ta=first_ta;
+		lag=first_lag;
+		switch=0;
+	end;
+run;
+
+proc datasets lib=work;
+	delete bootstrap allocate;
+run;
+%mend assign_location;
